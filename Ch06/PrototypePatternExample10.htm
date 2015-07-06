@@ -19,7 +19,13 @@
             }
         };
         
-        friend.sayName();   //error
+        // friend.sayName();   //error
+
+        console.log(friend.__proto__==Person.prototype);
+
+        var friend2 = new Person();
+        console.log(friend.__proto__==friend2.__proto__);
+        console.log(friend2.__proto__==Person.prototype);
 
 
         
