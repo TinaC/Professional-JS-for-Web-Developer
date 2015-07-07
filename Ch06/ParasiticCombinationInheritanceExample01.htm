@@ -3,16 +3,26 @@
 <head>
     <title>Parasitic Combination Inheritance Example</title>
     <script type="text/javascript">
-            
+        // 寄生组合式继承：通过onstructor stealing借用构造函数来继承属性， 通过原性链的混成形式hybrid form of prototype chaining来继承方法。
+
+
+        // 原型式继承    
         function object(o){
+            // 先创建一个临时性的构造函数
             function F(){}
+            // 将传入的对象作为这个构造函数的原型
             F.prototype = o;
+            // 返回这个临时类型的一个新实例
             return new F();
         }
     
+        // 寄生式继承
         function inheritPrototype(subType, superType){
+            // 创建超类型原型的一个副本
             var prototype = object(superType.prototype);   //create object
-            prototype.constructor = subType;               //augment object
+            // 为创建的副本添加constructor属性，从而弥补因为重写原型而失去的默认的constructor属性
+            prototype.constructor = subType;               //augment object增强对象
+            // 将新创建的对象（即副本）赋值给子类型的原型
             subType.prototype = prototype;                 //assign object
         }
                                 
@@ -56,7 +66,7 @@
 
 	<center>
   <div style="font-size:15px; font-weight:bold; text-align:center; line-height:25px;">
-     Դ����<a href="http://www.jq-school.com" target="_blank" style="color:#000">JquerySchool</a>��վ������<a href="http://www.jq-school.com" target="_blank">http://www.jq-school.com</a>��ѧϰ����QQȺ<a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=f221dd676cd5f7f51f6b580ff8fe1bdd2fefe911ae0e1137a6f79c58d6e11ebf"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Jqueryѧ��QQ��Ⱥ" title="Jqueryѧ��QQ��Ⱥ"></a></div>
+     Ô´ÂëÓÉ<a href="http://www.jq-school.com" target="_blank" style="color:#000">JquerySchool</a>ÍøÕ¾ÕûÀí£¨<a href="http://www.jq-school.com" target="_blank">http://www.jq-school.com</a>£©Ñ§Ï°½»Á÷QQÈº<a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=f221dd676cd5f7f51f6b580ff8fe1bdd2fefe911ae0e1137a6f79c58d6e11ebf"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="JqueryÑ§ÌÃQQ¢àÈº" title="JqueryÑ§ÌÃQQ¢àÈº"></a></div>
 </center>
 </body>
 </html>

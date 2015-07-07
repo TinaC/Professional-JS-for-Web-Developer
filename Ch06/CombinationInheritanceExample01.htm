@@ -3,7 +3,8 @@
 <head>
     <title>Combination Inheritance Example</title>
     <script type="text/javascript">
-                    
+     // 缺点：无论什么时候都会调用两次超类型构造函数，一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。               
+     // 结果就有两组name和colors属性：一组在实例上一组在SubType原型中。
         function SuperType(name){
             this.name = name;
             this.colors = ["red", "blue", "green"];
@@ -14,18 +15,18 @@
         };
 
         function SubType(name, age){  
-            SuperType.call(this, name);
+            SuperType.call(this, name); //第二次调用SuperType()
             
             this.age = age;
         }
 
-        SubType.prototype = new SuperType();
+        SubType.prototype = new SuperType(); //第一次调用SuperType()
         
         SubType.prototype.sayAge = function(){
             alert(this.age);
         };
         
-        var instance1 = new SubType("Nicholas", 29);
+        var instance1 = new SubType("Nicholas", 29); 
         instance1.colors.push("black");
         alert(instance1.colors);  //"red,blue,green,black"
         instance1.sayName();      //"Nicholas";
@@ -44,7 +45,7 @@
 
 	<center>
   <div style="font-size:15px; font-weight:bold; text-align:center; line-height:25px;">
-     Դ����<a href="http://www.jq-school.com" target="_blank" style="color:#000">JquerySchool</a>��վ������<a href="http://www.jq-school.com" target="_blank">http://www.jq-school.com</a>��ѧϰ����QQȺ<a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=f221dd676cd5f7f51f6b580ff8fe1bdd2fefe911ae0e1137a6f79c58d6e11ebf"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Jqueryѧ��QQ��Ⱥ" title="Jqueryѧ��QQ��Ⱥ"></a></div>
+     Ô´ÂëÓÉ<a href="http://www.jq-school.com" target="_blank" style="color:#000">JquerySchool</a>ÍøÕ¾ÕûÀí£¨<a href="http://www.jq-school.com" target="_blank">http://www.jq-school.com</a>£©Ñ§Ï°½»Á÷QQÈº<a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=f221dd676cd5f7f51f6b580ff8fe1bdd2fefe911ae0e1137a6f79c58d6e11ebf"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="JqueryÑ§ÌÃQQ¢àÈº" title="JqueryÑ§ÌÃQQ¢àÈº"></a></div>
 </center>
 </body>
 </html>

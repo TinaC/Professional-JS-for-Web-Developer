@@ -5,9 +5,10 @@
     <script type="text/javascript">
                     
         function SuperType(){
-            this.property = true;
+            this.property = true; //实例属性，每个实例各一份。参见constructor
         }
         
+        // 原型方法，所有实例共享
         SuperType.prototype.getSuperValue = function(){
             return this.property;
         };

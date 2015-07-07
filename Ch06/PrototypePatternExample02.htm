@@ -21,7 +21,7 @@
         person1.name = "Greg";
          alert(person1.name);   //"Greg" ?from instance
         person1.name = null;
-        alert(person1.name);   //null ?from instance
+        alert(person1.name);   //null ?from instance，不会恢复其指向原型的连接
         alert(person2.name);   //"Nicholas" ?from prototype
 
     </script>
